@@ -197,6 +197,7 @@ ORDER BY
 
 ```sql
 
+
 WITH product_segments AS(
 SELECT 
 	product_key,
@@ -216,7 +217,9 @@ SELECT
 FROM
 	product_segments
 GROUP BY
-	cost_range;
+	cost_range
+ORDER BY total_product DESC;
+
 
 ```
 
