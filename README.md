@@ -46,7 +46,7 @@ WHERE order_date IS NOT NULL
 GROUP BY YEAR(order_date)
 ORDER BY YEAR(order_date) ASC;
 ```
-
+![1](/assets/1.png)
 
 ### 2. Monthly Sales Analysis
 ```sql
@@ -61,6 +61,7 @@ WHERE order_date IS NOT NULL
 GROUP BY MONTH(order_date)
 ORDER BY MONTH(order_date) ASC;
 ```
+![2](/assets/2.png)
 
 ### 3. Combined Year-Month Analysis
 ```sql
@@ -76,4 +77,4 @@ WHERE order_date IS NOT NULL
 GROUP BY YEAR(order_date), MONTH(order_date)
 ORDER BY YEAR(order_date), MONTH(order_date) ASC;
 ```
- 
+![3](/assets/3.png)
