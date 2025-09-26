@@ -49,7 +49,7 @@ A modern SQL-based data analytics project for comprehensive sales data analysis 
 
 ---
 
-## 💻 SQL Queries Library
+## Changes over time analysis - trends
 
 ### 1. Yearly Sales Performance Dashboard
 ```sql
@@ -67,7 +67,7 @@ ORDER BY YEAR(order_date) ASC;
 
 
 ### 2. Monthly Sales Analysis
-```
+```sql
 SELECT
     MONTH(order_date) AS order_month,
     SUM(sales_amount) AS total_sales,
@@ -81,7 +81,7 @@ ORDER BY MONTH(order_date) ASC;
 ```
 
 ### 3. Combined Year-Month Analysis
-```
+```sql
 SELECT
     YEAR(order_date) AS order_year,
     MONTH(order_date) AS order_month,
