@@ -181,3 +181,44 @@ ORDER BY
 ![3](/assets/5.png)
 
 
+
+
+
+
+
+## 📊 Data Segmentation
+
+### Category Performance Analytics
+**Formula**: `[Measure]/[Measure]`
+**Example**:  `total_products/sales_range`
+**Example**: `total_customers/age`
+#### 1. Count how many products fall into each segments
+
+
+```sql
+
+WITH product_segments AS(
+SELECT 
+	product_key,
+	product_name,
+	category, 
+	cost,
+	CASE WHEN cost < 100 THEN 'Below 100'
+	     WHEN cost BETWEEN 100 AND 500 THEN '100-500'
+		 WHEN cost BETWEEN 500 AND 1000 THEN '500-1000'
+		 ELSE 'Above 1000'
+	END cost_range
+FROM products
+)
+SELECT
+	cost_range,
+	COUNT(product_key) AS total_product
+FROM
+	product_segments
+GROUP BY
+	cost_range;
+
+```
+
+![3](/assets/6.png)
+
