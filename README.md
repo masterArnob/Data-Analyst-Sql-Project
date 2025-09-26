@@ -15,6 +15,7 @@ A modern SQL-based data analytics project for comprehensive sales data analysis 
 2. Import CSV files:
    - Right-click database → Tasks → Import Flat File
    - Follow the import wizard for each table
+3. `Dimensions are descriptive attributes (who, what, where), facts are measurable metrics (numbers, amounts).`
 
 ---
 
