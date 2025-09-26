@@ -134,3 +134,5 @@ FROM
 ORDER BY
     order_year DESC;
 ```
+
+![3](/assets/4.png)
