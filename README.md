@@ -178,6 +178,6 @@ ORDER BY
 	percentage_of_total DESC;
 ```
 
-![3](/assets/4.png)
+![3](/assets/5.png)
 
 
