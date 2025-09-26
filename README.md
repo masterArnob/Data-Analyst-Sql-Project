@@ -27,25 +27,7 @@ A modern SQL-based data analytics project for comprehensive sales data analysis 
 | `products` | Product catalog | product_key, price, category |
 | `sales` | Transaction records | order_date, sales_amount, quantity |
 
-### Core Metrics Tracked
-- 💰 **Sales Performance**: Total revenue, average order value
-- 📦 **Volume Analysis**: Quantity sold, transaction counts
-- 👥 **Customer Insights**: Unique customers, retention metrics
-- 📅 **Temporal Trends**: Year-over-Year, Month-over-Month growth
 
----
-
-## 🔍 Analytical Features
-
-### 📈 Time-Series Analysis
-- **Annual Performance Review**: Yearly sales trends and growth patterns
-- **Seasonal Analysis**: Monthly performance and cyclical trends
-- **Granular Period Analysis**: Combined year-month detailed reporting
-
-### 📊 Key Business Questions Answered
-- What are the best and worst performing months?
-- How is customer growth correlating with revenue?
-- What are the annual sales trends over time?
 
 ---
 
