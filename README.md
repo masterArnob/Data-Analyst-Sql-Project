@@ -1,50 +1,58 @@
-# Data-Analyst-Sql-Project
+# 📊 Data Warehouse Analytics Project
 
-ms sql dwonload: https://www.microsoft.com/en-us/sql-server/sql-server-downloads
-ssms download: https://learn.microsoft.com/en-us/ssms/install/install?view=sql-server-ver16 
+A modern SQL-based data analytics project for comprehensive sales data analysis and business intelligence reporting.
 
+---
 
-### import csv in ms sql
-```
-create new database
-then go to task
-then import flat files
-```
+## 🚀 Quick Start
 
-# Data Warehouse Analytics Project
+### Prerequisites
+- **MS SQL Server**: [Download Here](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
+- **SSMS (SQL Server Management Studio)**: [Download Here](https://learn.microsoft.com/en-us/ssms/install/install?view=sql-server-ver16)
 
-A comprehensive data analytics project for analyzing sales data from a data warehouse environment using SQL.
+### Database Setup
+1. Create new database: `CREATE DATABASE DataWarehouseAnalytics;`
+2. Import CSV files:
+   - Right-click database → Tasks → Import Flat File
+   - Follow the import wizard for each table
 
-## 📊 Project Overview
+---
 
-This repository contains SQL scripts for analyzing sales data trends and performance metrics over time.
+## 🗃️ Project Architecture
 
-## 🗂️ Database Structure
+### Database Schema
+| Table | Description | Key Fields |
+|-------|-------------|------------|
+| `customers` | Customer master data | customer_key, demographics |
+| `products` | Product catalog | product_key, price, category |
+| `sales` | Transaction records | order_date, sales_amount, quantity |
 
-**Database Name:** `DataWarehouseAnalytics`
+### Core Metrics Tracked
+- 💰 **Sales Performance**: Total revenue, average order value
+- 📦 **Volume Analysis**: Quantity sold, transaction counts
+- 👥 **Customer Insights**: Unique customers, retention metrics
+- 📅 **Temporal Trends**: Year-over-Year, Month-over-Month growth
 
-**Main Tables:**
-- `customers` - Customer information
-- `products` - Product catalog
-- `sales` - Sales transactions
+---
 
-## 📈 Analysis Features
+## 🔍 Analytical Features
 
-### Time-Based Trend Analysis
-- **Yearly Trends**: Total sales, quantities, and customer counts by year
-- **Monthly Trends**: Monthly performance metrics and seasonal patterns
-- **Year-Month Analysis**: Detailed monthly trends within each year
+### 📈 Time-Series Analysis
+- **Annual Performance Review**: Yearly sales trends and growth patterns
+- **Seasonal Analysis**: Monthly performance and cyclical trends
+- **Granular Period Analysis**: Combined year-month detailed reporting
 
-### Key Metrics
-- Total Sales Amount
-- Quantity Sold
-- Total Price
-- Unique Customer Counts
+### 📊 Key Business Questions Answered
+- What are the best and worst performing months?
+- How is customer growth correlating with revenue?
+- What are the annual sales trends over time?
 
-## 🛠️ SQL Queries
+---
 
-### 1. Yearly Sales Analysis
-```
+## 💻 SQL Queries Library
+
+### 1. Yearly Sales Performance Dashboard
+```sql
 SELECT
     YEAR(order_date) AS order_year,
     SUM(sales_amount) AS total_sales,
