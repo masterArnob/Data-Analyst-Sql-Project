@@ -260,3 +260,63 @@ GROUP BY
 
 
 
+
+
+
+#### 3. Group customer into 3 segments based on their spending behaviours
+-- VIP: atleast 12 months of history and spending more then 5k
+-- Regular: atleast 12 months of history but spending 5k or less
+-- New: lifespan less then 12 months
+
+
+```sql
+
+
+
+WITH customer_spendings AS(
+SELECT 
+	customers.customer_key,
+	CONCAT(customers.first_name, ' ', customers.last_name) AS customer_name,
+	customers.gender,
+	SUM(sales.sales_amount) AS total_spending,
+	MIN(sales.order_date) AS first_order,
+	MAX(sales.order_date) AS last_order,
+	DATEDIFF(MONTH, MIN(sales.order_date), MAX(sales.order_date)) AS lifespan_months
+FROM 
+	customers
+LEFT JOIN
+	sales
+ON 
+	customers.customer_key = sales.customer_key
+GROUP BY 
+	customers.customer_key,
+	CONCAT(customers.first_name, ' ', customers.last_name),
+	customers.gender
+)
+SELECT
+	customer_key,
+	customer_name,
+	gender,
+	total_spending,
+	lifespan_months,
+
+CASE WHEN lifespan_months >= 12 AND total_spending > 5000 THEN 'VIP'
+	 WHEN lifespan_months >= 12 AND total_spending <= 5000 THEN 'Regular'
+	 WHEN lifespan_months < 12 THEN 'New'
+END customer_segment
+
+FROM
+	customer_spendings
+WHERE 
+	lifespan_months IS NOT NULL
+ORDER BY
+	lifespan_months DESC
+;
+
+```
+
+![3](/assets/8.png)
+
+
+
+
