@@ -91,11 +91,13 @@ ORDER BY YEAR(order_date), MONTH(order_date) ASC;
 
 
 
-## Performance analysis
--- performance analysis
--- formula = Current[Measure] - Target[Measure]
--- 1. analyze the yearly performance of the products by
-      -- comparing each product sales to both its avg sales
+## 📊 Performance Analysis
+
+### Product Performance Analytics
+**Formula**: `Current[Measure] - Target[Measure]`
+
+#### 1. Yearly Product Performance vs Average Sales
+Analyze how each product performs compared to its historical average sales:
 
 ```sql
 WITH yearly_product_sales AS (
