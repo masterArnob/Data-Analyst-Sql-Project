@@ -79,3 +79,56 @@ GROUP BY YEAR(order_date), MONTH(order_date)
 ORDER BY YEAR(order_date), MONTH(order_date) ASC;
 ```
 ![3](/assets/3.png)
+
+
+
+
+
+
+
+
+
+
+
+
+## Performance analysis
+-- performance analysis
+-- formula = Current[Measure] - Target[Measure]
+-- 1. analyze the yearly performance of the products by
+      -- comparing each product sales to both its avg sales
+
+```sql
+WITH yearly_product_sales AS (
+SELECT
+    YEAR(sales.order_date) AS order_year,
+    products.product_name,
+    SUM(sales.sales_amount) AS current_sales
+FROM
+    sales
+JOIN 
+    products
+ON 
+    sales.product_key = products.product_key
+WHERE 
+    sales.order_date IS NOT NULL
+GROUP BY
+    YEAR(sales.order_date),
+    products.product_name
+)
+SELECT
+    order_year,
+    product_name,
+    current_sales,
+    AVG(current_sales) OVER (PARTITION BY product_name) AS avarage_sales,
+    current_sales - AVG(current_sales) OVER (PARTITION BY product_name) AS avarage_difference,
+
+    CASE WHEN current_sales - AVG(current_sales) OVER (PARTITION BY product_name) > 0 THEN 'Above Avarage'
+         WHEN current_sales - AVG(current_sales) OVER (PARTITION BY product_name) < 0 THEN 'Below Avarage'
+         ELSE 'Avarage'
+    END avarage_change
+
+FROM 
+    yearly_product_sales
+ORDER BY
+    order_year DESC;
+```
