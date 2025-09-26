@@ -263,10 +263,13 @@ GROUP BY
 
 
 
-#### 3. Group customer into 3 segments based on their spending behaviours
--- VIP: atleast 12 months of history and spending more then 5k
--- Regular: atleast 12 months of history but spending 5k or less
--- New: lifespan less then 12 months
+#### 3. Customer Behavior Segmentation
+Group customers into 3 strategic segments based on spending behavior and loyalty:
+
+**Segmentation Criteria:**
+- 🏆 **VIP Customers**: At least 12 months of history AND spending more than $5,000
+- 👍 **Regular Customers**: At least 12 months of history BUT spending $5,000 or less  
+- 🆕 **New Customers**: Customer lifespan less than 12 months
 
 
 ```sql
