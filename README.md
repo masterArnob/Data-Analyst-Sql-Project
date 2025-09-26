@@ -136,3 +136,48 @@ ORDER BY
 ```
 
 ![3](/assets/4.png)
+
+
+
+
+
+
+
+## 📊 Proportional Analysis
+
+### Category Performance Analytics
+**Formula**: `([Measure]/Total[Measure])*100 By [Dimension]`
+#### 1. Which categories contribute the most to overall sales
+
+
+```sql
+
+WITH category_sales AS(
+SELECT 
+	products.category,
+	SUM(sales.sales_amount) AS total_sale_amount
+FROM 
+	sales
+LEFT JOIN 
+	products
+ON
+	sales.product_key = products.product_key
+WHERE 
+	sales.order_date IS NOT NULL
+GROUP BY 
+	products.category
+)
+SELECT 
+	category,
+	total_sale_amount,
+	SUM(total_sale_amount) OVER() AS overall_sales,
+	CONCAT(ROUND((CAST (total_sale_amount AS FLOAT) / SUM(total_sale_amount) OVER())*100, 2), '%') AS percentage_of_total
+FROM 
+	category_sales
+ORDER BY
+	percentage_of_total DESC;
+```
+
+![3](/assets/4.png)
+
+
