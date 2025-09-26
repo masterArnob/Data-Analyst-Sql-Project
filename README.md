@@ -225,3 +225,38 @@ ORDER BY total_product DESC;
 
 ![3](/assets/6.png)
 
+
+
+#### 2. Find the lifespan of each customers
+
+
+```sql
+
+
+SELECT 
+	customers.customer_key,
+	CONCAT(customers.first_name, ' ', customers.last_name) AS customer_name,
+	customers.gender,
+	SUM(sales.sales_amount) AS tota_spending,
+	MIN(sales.order_date) AS first_order,
+	MAX(sales.order_date) AS last_order,
+	DATEDIFF(MONTH, MIN(sales.order_date), MAX(sales.order_date)) AS lifespan_months
+FROM 
+	customers
+LEFT JOIN
+	sales
+ON 
+	customers.customer_key = sales.customer_key
+GROUP BY 
+	customers.customer_key,
+	CONCAT(customers.first_name, ' ', customers.last_name),
+	customers.gender
+	;
+
+
+```
+
+![3](/assets/6.png)
+
+
+
