@@ -227,7 +227,7 @@ ORDER BY total_product DESC;
 
 
 
-#### 2. Find the lifespan of each customers
+#### 2. Find the lifespan of each customers with total spendings
 
 
 ```sql
@@ -256,7 +256,7 @@ GROUP BY
 
 ```
 
-![3](/assets/6.png)
+![3](/assets/7.png)
 
 
 
