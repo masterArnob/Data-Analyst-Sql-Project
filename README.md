@@ -320,6 +320,50 @@ ORDER BY
 
 ![3](/assets/8.png)
 
+Count total customer based on the segments
 
+```sql
+
+WITH customer_spendings AS(
+SELECT
+	customers.customer_key,
+	CONCAT(customers.first_name, ' ', customers.last_name) AS customer_name,
+	customers.gender,
+	MIN(sales.order_date) AS first_order,
+	MAX(sales.order_date) AS last_order,
+	DATEDIFF(MONTH, MIN(sales.order_date), MAX(sales.order_date)) AS lifespan,
+	SUM(sales.sales_amount) AS total_spendings
+FROM
+	customers
+LEFT JOIN
+	sales 
+ON
+	customers.customer_key = sales.customer_key
+GROUP BY 
+	customers.customer_key,
+	CONCAT(customers.first_name, ' ', customers.last_name),
+	customers.gender
+)
+SELECT 
+	customer_segment,
+	COUNT(customer_key) AS total_customer
+FROM(
+SELECT 
+	customer_key,
+
+CASE WHEN lifespan >= 12 AND total_spendings > 5000 THEN 'VIP'
+     WHEN lifespan >= 12 AND total_spendings <= 5000 THEN 'Regular'
+	 WHEN lifespan < 12 THEN 'New'
+END customer_segment
+FROM 
+	customer_spendings
+WHERE lifespan IS NOT NULL AND total_spendings IS NOT NULL
+	) 
+AS t
+GROUP BY customer_segment
+ORDER BY COUNT(customer_key) DESC
+
+```
+![3](/assets/9.png)
 
 
